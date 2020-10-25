@@ -17,7 +17,9 @@ function callApi(endpoint, token) {
       .then(response => {
 
         if (response) {
-          logMessage('Web API responded: ' + response.name);
+          response.text().then(function (text) {
+            logMessage('Web API responded: ' + text);
+          });
         }
         
         return response;

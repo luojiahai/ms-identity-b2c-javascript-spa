@@ -118,9 +118,9 @@ function passTokenToApi() {
     getTokenPopup(tokenRequest)
         .then(response => {
             if (response) {
-                console.log("access_token acquired at: " + new Date().toString());
+                console.log("idToken acquired at: " + new Date().toString());
                 try {
-                    callApi(apiConfig.webApi, response.accessToken);
+                    callApi(apiConfig.webApi, response.idToken);
                 } catch(error) {
                     console.warn(error); 
                 }
