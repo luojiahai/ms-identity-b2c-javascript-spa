@@ -131,14 +131,18 @@ function getTokenRedirect(request) {
  
 // Acquires and access token and then passes it to the API call
 function passTokenToApi() {
-   getTokenRedirect(tokenRequest);
-   if (accessToken) {
-        try {
-            callApi(apiConfig.webApi, accessToken);
-        } catch(error) {
-            console.warn(error); 
-        }
-    }
+   getTokenRedirect(tokenRequest)
+      .then(response => {
+         if (response) {
+            console.log("access_token acquired at: " + new Date().toString());
+            console.log("uniqueId: " + response.uniqueId);
+            try {
+                callApi(apiConfig.webApi, response.idToken);
+            } catch(error) {
+                console.warn(error); 
+            }
+         }
+      });
 }
 
 function editProfile() {
